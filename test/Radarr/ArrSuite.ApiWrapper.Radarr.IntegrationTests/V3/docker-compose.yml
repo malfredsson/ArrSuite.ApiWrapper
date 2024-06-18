@@ -1,0 +1,16 @@
+name: arrsuite-wrapper-radarr-v3
+services:
+  radarr:
+    image: lscr.io/linuxserver/radarr:5.6.0
+    container_name: arsuite-wrapper-radarr-v3-test
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
+    volumes:
+      - /path/to/radarr/data:/config
+      - ./config/config.xml:/config/config.xml
+      - ./config/database/radarr.db:/config/radarr.db
+    ports:
+      - 7878:7878
+    restart: unless-stopped

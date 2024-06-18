@@ -1,0 +1,18 @@
+name: arrsuite-wrapper-lidarr-v1
+services:
+  sonarr:
+    image: lscr.io/linuxserver/lidarr:2.3.3
+    container_name: arsuite-wrapper-lidarr-v1-test
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
+    volumes:
+      - /path/to/lidarr/data:/config
+      - /path/to/music:/music
+      - /path/to/downloads:/downloads
+      - ./config/config.xml:/config/config.xml
+      - ./config/database/lidarr.db:/config/lidarr.db
+    ports:
+      - 8686:8686
+    restart: unless-stopped
